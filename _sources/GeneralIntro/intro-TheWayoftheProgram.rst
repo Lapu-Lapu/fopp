@@ -10,8 +10,8 @@
 .. index:: programming language, portable, high-level language,
            low-level language, compile, interpret
 
-Introduction: The Way of the Program
-====================================
+Introduction: The Way of the Program (NP2-b)
+============================================
 
 .. youtube:: xuEtNpVzFYA
     :divid: goog_course_intro
