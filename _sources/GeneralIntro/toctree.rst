@@ -7,7 +7,6 @@ General Introduction
 
    intro-TheWayoftheProgram.rst
    Algorithms.rst
-   ThePythonProgrammingLanguage.rst
    SpecialWaystoExecutePythoninthisBook.rst
    MoreAboutPrograms.rst
    FormalandNaturalLanguages.rst
