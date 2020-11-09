@@ -5,7 +5,7 @@ Conditionals
    :caption: Conditionals
    :maxdepth: 2
 
-   intro-TurtlesandConditionals.rst
+   intro-Conditionals.rst
    BooleanValuesandBooleanExpressions.rst
    Logicaloperators.rst
    Theinandnotinoperators.rst

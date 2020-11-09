@@ -162,7 +162,7 @@ operations in an ``if`` statement or ``while`` loop using boolean logic with ``a
    :feedback_d: Yes, with an ``and`` keyword both expressions must be true so the number must be greater than 0 an less than 5 for this expression to be true.
    :practice: T
 
-   What is the correct Python expression for checking to see if a number stored in a variable x is between 0 and 5.
+   Which of the following lines of code are valid Python expressions for checking to see if a number stored in a variable ``x`` is between 0 and 5.
 
 .. mchoice:: question7_3_2
    :practice: T

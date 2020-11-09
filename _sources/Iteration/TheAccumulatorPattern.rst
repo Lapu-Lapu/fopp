@@ -23,7 +23,7 @@ accumulated a single value, such as the sum total of all the items or the larges
 The anatomy of the accumulation pattern includes:
    - **initializing** an "accumulator" variable to an initial value (such as 0 if accumulating a sum)
    - **iterating** (e.g., traversing the items in a sequence)
-   - **updating** the accumulator variable on each iteration (i.e., when processing each item in the sequence)
+   - **updating** the accumulator variable on each iteration (e.g., when processing each item in the sequence)
    
 For example, consider the following code, which computes the sum of the numbers in a list.
 
@@ -63,11 +63,12 @@ accumulate the result.
 
     What would happen if we indented the print accum statement? Not sure? Make a prediction, then try it and find out.
 
-We can utilize the range function in this situation as well. Previously, you've seen it used when we wanted to draw in 
-turtle. There we used it to iterate a certain number of times. We can do more than that though. The ``range`` function 
-takes at least one input - which should be an integer - and returns a list as long as your input. While you can provide 
-two inputs, we will focus on using range with just one input. With one input, range will start at zero and go up to - but 
-not include - the input. Here are the examples: 
+We can utilize the range function in this situation as well.
+We can do more than that though.
+The ``range`` function takes at least one input - which should be an integer - and returns a sequence as long as your input.
+While you can provide two inputs, we will focus on using range with just one input.
+With one input, range will start at zero and go up to - but not include - the input.
+Here are the examples:
 
 .. activecode:: ac6_8_10
 
@@ -86,13 +87,13 @@ not include - the input. Here are the examples:
     # Note: `range` function is already casted as `list` in the textbook
     print(range(5))
 
+.. note::
 
+    "Casting" means to change a variable type from one to the other (for example, from a string to an integer).
 
-
-
-One important thing to know about the range function in python3 is that if we want to use it outside of iteration, we 
-have to cast it as a list using ``list()``. Inside the textbook you'll notice that ``range`` works with or without 
-casting it as a list but it is best for you to try and get into the habit of casting it as a list. Here's how you could use the range function in the previous problem.
+One important thing to know about the range function in Python 3 is that if we want to use it outside of iteration, we have to cast it as a list using ``list()``.
+Inside the textbook you'll notice that ``range`` works with or without casting it as a list but it is best for you to try and get into the habit of casting it as a list.
+Here's how you could use the range function in the previous problem.
 
 .. activecode:: ac6_6_2
 
@@ -110,9 +111,8 @@ casting it as a list but it is best for you to try and get into the habit of cas
 
 Because the range function is exclusive of the ending number, we have to use 11 as the function input. 
 
-We can use the accumulation pattern is count the number of something or to sum up a total. The 
-above examples only covered how to get the sum for a list, but we can also count how many items are 
-in the list if we wanted to.
+We can use the accumulation pattern is count the number of something or to sum up a total.
+The above examples only covered how to get the sum for a list, but we can also count how many items are  in the list if we wanted to.
 
 .. activecode:: ac6_6_3
 
@@ -122,13 +122,33 @@ in the list if we wanted to.
        count = count + 1
    print(count)
 
-In this example we don't make use of ``w`` even though the iterator variable (loop variable) is a necessary part of
-constructing a for loop. Instead of adding the value of ``w`` to ``count`` we add a 1 to it, 
-because we're incrementing the value of count when we iterate each time through the loop. Though in 
-this scenario we could have used the ``len`` function, there are other cases later on where len 
-won't be useful but we will still need to count.
+In this example we don't make use of ``w`` even though the iterator variable (loop variable) is a necessary part of constructing a for loop.
+Instead of adding the value of ``w`` to ``count`` we add a 1 to it, because we're incrementing the value of count when we iterate each time through the loop.
+Though in this scenario we could have used the ``len`` function, there are other cases later on where len  won't be useful but we will still need to count.
 
 **Check your understanding**
+
+.. mchoice:: question6_6_0
+      :answer_a: Add four rolls of a six sided die together.
+      :answer_b: Add the rolls of a six, eight, ten and twenty sided die together.
+      :answer_c: Roll a six sided die and add its result to a total.
+      :correct: c
+      :feedback_a: The question is not asking you to describe the outcome of the entire loop, the question is asking you about the outcome of a **single iteration** of the loop.
+      :feedback_b: Notice that rangeEnd is never actually used inside the loop.
+      :feedback_c: The body of the loop only generates a single number and adds it to a running total.  It will be repeated once for each item in the list. However, the end point of the range never changes.
+
+      Consider the following code:
+
+      .. code-block:: python
+        import random
+
+        total = 0
+
+        for rangeEnd in [6, 8, 10, 20]:
+           dieRoll = random.randrange(6)
+           total = total + dieRoll
+
+      What does each iteration through the loop do?
 
 .. mchoice:: question6_6_1
    :answer_a: It will print out 10 instead of 55
