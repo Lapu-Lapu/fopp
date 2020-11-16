@@ -7,3 +7,5 @@ General Introduction
 
    intro.rst
    head.rst
+   proximity.rst
+   spheres.rst

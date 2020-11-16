@@ -68,31 +68,3 @@ Here's the definition of a simple function, hello.
 
     By convention, Python programmers use docstrings for the key documentation of
     their functions.
-
-We can apply functions to the turtle drawings we've done in the past as well.
-
-.. activecode:: ac11_1_2
-    :nocodelens:
-
-    import turtle
-
-    def drawSquare(t, sz):
-        """Make turtle t draw a square of with side sz."""
-
-        for i in range(4):
-            t.forward(sz)
-            t.left(90)
-
-
-    wn = turtle.Screen()      # Set up the window and its attributes
-    wn.bgcolor("lightgreen")
-
-    alex = turtle.Turtle()    # create alex
-    drawSquare(alex, 50)      # Call the function to draw the square passing the actual turtle and the actual side size
-
-    wn.exitonclick()
-
-This function is named ``drawSquare``. It has two parameters --- one to tell the function which turtle to move around 
-and the other to tell it the size of the square we want drawn. In the function definition they are called ``t`` and 
-``sz`` respectively. Make sure you know where the body of the function ends --- it depends on the indentation and the 
-blank lines don't count for this purpose!

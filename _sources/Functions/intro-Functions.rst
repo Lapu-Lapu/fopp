@@ -14,12 +14,6 @@
 Introduction to Functions
 =========================
 
-.. youtube:: 85WYZKKnaPQ
-    :divid: goog_function_intro
-    :height: 315
-    :width: 560
-    :align: left
-
 In Python, a **function** is a chunk of code that performs some operation that is meaningful for a person to think about as a whole unit, for example calculating a student's GPA in a learning system or responding to the jump action in a video game. Once a function has been defined and you are satisfied that it does what it is supposed to do, you will start thinking about it in terms of the larger operation that it performs rather than the specific lines of code that make it work.
 
 This breaking down of a task or problem is crucial to the successful implementation of any program of more than 50 or so lines (and plenty of smaller ones too).  For example, the program that displays the Instagram landing page is made up of functions that:

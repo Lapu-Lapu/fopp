@@ -192,6 +192,7 @@ Table of Contents
    BuildingPrograms/toctree.rst
    Inheritance/toctree.rst
    AdvancedAccumulation/toctree.rst
+   Vizard/toctree.rst
 
 .. toctree::
     :hidden:
