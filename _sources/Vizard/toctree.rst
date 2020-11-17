@@ -1,5 +1,5 @@
-General Introduction
-::::::::::::::::::::
+Vizard
+::::::
 
 .. toctree::
    :caption: General Introduction
@@ -7,5 +7,6 @@ General Introduction
 
    intro.rst
    head.rst
+   classes.rst
    proximity.rst
    spheres.rst

@@ -15,7 +15,7 @@ The floating spheres light up in a certain color when the participant approaches
 This experiment is very similar to your typical memory experiment conducted in front of a PC monitor with one crucial difference: It adds a 3D environment and spacial movement.
 This increases its ecological validity for situations not related to looking at a screen (e.g. navigating through your home town). The current design is not much of an experiment, of course, but it can easily be modified to answer interestng psychological questions. For example, the age of the virtual avatar could be varied (e.g. tween vs. senior) and experimenters could observe whether this has an effect on recall performance.
 
-The goal of this chapter is for you to understand in broad strokes how the following script works. This will probably look like a scary wall of text to you, but don't worry: We will tackle it one code chunk at a time and along the way you will learn a couple new things about Python, get a first introduction to Vizard and hopefully get a bit more of a feeling for how to read someone else's code. For now, I encourage you to skim through the script and try to find things that look familiar to you.
+The goal of this chapter is for you to understand in broad strokes how the following script works. It will probably look like a scary wall of text to you at first, but don't worry: We will tackle it one code chunk at a time and along the way you will learn a couple new things about Python, get a first introduction to Vizard and hopefully get a bit more of a feeling for how to read someone else's code. For now, I encourage you to skim through the script and try to find things that look familiar to you.
 
 .. code-block:: python
 
@@ -49,7 +49,7 @@ The goal of this chapter is for you to understand in broad strokes how the follo
     
     #add spheres and create a proximity sensor around each one
     sphereSensors = []
-    def AddSphere(name, color, position):
+    def addHiddenSphere(name, color, position):
     
         sphere = vizshape.addSphere(radius=0.2)
         sphere.setPosition(position)
@@ -62,12 +62,12 @@ The goal of this chapter is for you to understand in broad strokes how the follo
         manager.onEnter(sensor, EnterSphere, sphere, color)
         manager.onExit(sensor, ExitSphere, sphere)
     
-    AddSphere('red', viz.RED, [0,1.8,4])
-    AddSphere('blue', viz.BLUE, [3.5,1.8,2])
-    AddSphere('yellow', viz.YELLOW, [3.5,1.8,-2])
-    AddSphere('green', viz.GREEN, [0,1.8,-4])
-    AddSphere('purple', viz.PURPLE, [-3.5,1.8,-2])
-    AddSphere('gray', viz.GRAY, [-3.5,1.8,2])
+    addHiddenSphere('red', viz.RED, [0,1.8,4])
+    addHiddenSphere('blue', viz.BLUE, [3.5,1.8,2])
+    addHiddenSphere('yellow', viz.YELLOW, [3.5,1.8,-2])
+    addHiddenSphere('green', viz.GREEN, [0,1.8,-4])
+    addHiddenSphere('purple', viz.PURPLE, [-3.5,1.8,-2])
+    addHiddenSphere('gray', viz.GRAY, [-3.5,1.8,2])
 
     #Set debug off. Toggle debug with d key
     manager.setDebug(viz.OFF)

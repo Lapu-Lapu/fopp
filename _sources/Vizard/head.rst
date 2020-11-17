@@ -5,7 +5,7 @@ Getting an Overview of the Code
 ===============================
 
 A good practice when reading someone else's code is to skip functions and come back to them when they are mentioned in the code.
-You can think about it like treating the functions like black boxes and only looking into the boxes when you need to.
+You can think about it like treating the functions as black boxes and only looking into the boxes when you need to.
 
 So let's turn each of the functions into a black box and then look at the code again:
 
@@ -42,15 +42,15 @@ So let's turn each of the functions into a black box and then look at the code a
     #add spheres and create a proximity sensor around each one
     sphereSensors = []
     
-    def AddSphere(name, color, position):
+    def addHiddenSphere(name, color, position):
         ..........
     
-    AddSphere('red', viz.RED, [0,1.8,4])
-    AddSphere('blue', viz.BLUE, [3.5,1.8,2])
-    AddSphere('yellow', viz.YELLOW, [3.5,1.8,-2])
-    AddSphere('green', viz.GREEN, [0,1.8,-4])
-    AddSphere('purple', viz.PURPLE, [-3.5,1.8,-2])
-    AddSphere('gray', viz.GRAY, [-3.5,1.8,2])
+    addHiddenSphere('red', viz.RED, [0,1.8,4])
+    addHiddenSphere('blue', viz.BLUE, [3.5,1.8,2])
+    addHiddenSphere('yellow', viz.YELLOW, [3.5,1.8,-2])
+    addHiddenSphere('green', viz.GREEN, [0,1.8,-4])
+    addHiddenSphere('purple', viz.PURPLE, [-3.5,1.8,-2])
+    addHiddenSphere('gray', viz.GRAY, [-3.5,1.8,2])
 
     #Set debug off. Toggle debug with d key
     manager.setDebug(viz.OFF)
@@ -96,12 +96,12 @@ Import Statements
 The importing of modules is traditionally done right at the top of the script.
 You could also load each modul right before you use for the first time, but this way someone who is reading your script can easily see which modules they need to have installed in order to be able to run your code.
 
-`viz` is the shorthand for the Vizard module.
+``viz`` is the shorthand for the Vizard module.
 Vizard is a proprietary and commercial Python module which can be used to program virtual reality scenarios.
 "Proprietary" means that the source code is not freely available and may not be changed by anyone other than Worldviz, the publisher of Vizard.
-The other five modules can be thought of as addons to `viz`.
-You might wonder why they are separate modules and not simply part of `viz`.
-One reasone for this might be that this way you are able to load only the modules that you need which could free up valuable resources for running the VR experiment more smoothly.
+The other five modules can be thought of as addons to viz.
+You might wonder why they are separate modules and not simply part of viz.
+One reason for this might be that this way you are able to load only the modules that you need which could free up valuable resources for running the VR experiment more smoothly.
 
 General Setup
 -------------
@@ -132,17 +132,15 @@ The function is called ``addChild()``, but "add" to *what* exactly?
 The 3D environment of Vizard is organized in a tree structure.
 Each 3D object loaded has a *parent*, i.e. another 3D model it is "attached" to, and is in turn the *child* of said parent.
 For example, if I have a table in my virtual environment and I want to put something on top of it (e.g. the 3D model of a vase), one of the easiest ways to accomplish this goal is to add the vase as a child of the table.
-Assuming the model for the table is saved in the variable ``table``, I can accomplish this with
-
-``vase = viz.addChild('vase.osgb', table)``, where the first argument is the file path to the 3D model of the vase and the second argument is its parent.
+Assuming the model for the table is saved in the variable ``table``, I can accomplish this with ``vase = viz.addChild('vase.osgb', table)``, where the first argument is the file path to the 3D model of the vase and the second argument is its parent.
 
 You might wonder why ``viz.addChild('dojo.osgb')`` does not have a parent argument.
 The reason for this is that we are using the default value of this argument and therefore do not need to specify it.
 Said default value is ``viz.WORLD``.
-``viz.WORLD`` can be thought of as a gigantic void, the huge nothingness out of which existence sprang.
-Its the fabric of our virtual reality, the one thing that is if everything else isn't.
-Sorry, I got carried away there a little bit, back on track: You can see ``viz.WORLD``, if you run viz.go() without loading a 3D object (such as ``dojo.osgb``) that is big enough to serve as your environment.
-Honetly, it's not much to look at, just a neverending black void.
+``viz.WORLD`` can be thought of as a gigantic void, the huge nothingness out of which virtual existence sprang.
+Its the fabric of our virtual reality, the one thing that is if everything else isn't. ...
+Sorry, I got carried away there a little bit, back on track: You can see ``viz.WORLD``, if you run ``viz.go()`` without loading a 3D object that is big enough to serve as your environment (such as ``dojo.osgb``).
+Honestly, it's not much to look at, just a neverending black void.
 
 
 

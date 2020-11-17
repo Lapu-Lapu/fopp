@@ -17,15 +17,15 @@ Adding the Spheres
     #add spheres and create a proximity sensor around each one
     sphereSensors = []
     
-    def AddSphere(name, color, position):
+    def addHiddenSphere(name, color, position):
         ..........
     
-    AddSphere('red', viz.RED, [0,1.8,4])
-    AddSphere('blue', viz.BLUE, [3.5,1.8,2])
-    AddSphere('yellow', viz.YELLOW, [3.5,1.8,-2])
-    AddSphere('green', viz.GREEN, [0,1.8,-4])
-    AddSphere('purple', viz.PURPLE, [-3.5,1.8,-2])
-    AddSphere('gray', viz.GRAY, [-3.5,1.8,2])
+    addHiddenSphere('red', viz.RED, [0,1.8,4])
+    addHiddenSphere('blue', viz.BLUE, [3.5,1.8,2])
+    addHiddenSphere('yellow', viz.YELLOW, [3.5,1.8,-2])
+    addHiddenSphere('green', viz.GREEN, [0,1.8,-4])
+    addHiddenSphere('purple', viz.PURPLE, [-3.5,1.8,-2])
+    addHiddenSphere('gray', viz.GRAY, [-3.5,1.8,2])
 
 Staying true to our strategy of treating the defintions like black boxes until we need to look into them, we skip the two functions and go straight to the line
 
@@ -39,14 +39,14 @@ After skipping the next function we arrive at
 
 .. code-block:: python
 
-    AddSphere('red', viz.RED, [0,1.8,4])
+    addHiddenSphere('red', viz.RED, [0,1.8,4])
 
 Ah, seems like we need to take a look into our first black box (aka user-defined function).
 So let's backtrack:
 
 .. code-block:: python
 
-    def AddSphere(name, color, position):
+    def addHiddenSphere(name, color, position):
     
         sphere = vizshape.addSphere(radius=0.2)
         sphere.setPosition(position)
@@ -60,10 +60,10 @@ So let's backtrack:
         manager.onExit(sensor, ExitSphere, sphere)
 
 There's quite a bit to unpack here.
-First of all, it takes three arguments, which we have called ``name``, ``color`` and ``position`` respectively.
-As we can see from the use of ``AddSphere()`` directly below the function definition, ``name`` is supposed to be a string, ``color`` a ``viz`` object and ``position`` a list with three entries.
+First of all, the function takes three arguments, which we have called ``name``, ``color`` and ``position`` respectively.
+As we can see from the uses of ``addHiddenSphere()`` directly below the function definition, ``name`` is supposed to be a string, ``color`` a ``viz`` object and ``position`` a list with three entries.
 
-In the first line of the function, we instantiate a sphere object.
+In the first line of the function, we create a sphere object using the ``addSphere`` function provided by the ``vizshape`` module.
 Just like with the ``addChild()`` function above, its parent is ``viz.WORLD``.
 We set its radius to 0.2 meter through the keyword argument ``radius``.
 In the next line we use the sphere class's method ``setPosition`` to position the sphere.
