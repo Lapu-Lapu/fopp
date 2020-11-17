@@ -14,3 +14,4 @@ Vizard
    enterAndExit.rst
    scheduling.rst
    generators.rst
+   experiment.rst
