@@ -32,11 +32,11 @@ So let's turn each of the functions into a black box and then look at the code a
     manager.addTarget(target)
     
     #fade to true color when viewpoint moves near
-    def EnterSphere(e, sphere, color):
+    def enterSphere(e, sphere, color):
         ..........
     
     #fade to white when viewpoint moves away
-    def ExitSphere(e, sphere):
+    def exitSphere(e, sphere):
         ..........
     
     #add spheres and create a proximity sensor around each one
@@ -53,7 +53,7 @@ So let's turn each of the functions into a black box and then look at the code a
     addHiddenSphere('gray', viz.GRAY, [-3.5,1.8,2])
 
     #Set debug off. Toggle debug with d key
-    manager.setDebug(viz.OFF)
+    manager.setDebug(False)
     debugEventHandle = vizact.onkeydown('d',manager.setDebug,viz.TOGGLE)
     
     #Add a sensor in the center of the room for the participant to return to after each trial

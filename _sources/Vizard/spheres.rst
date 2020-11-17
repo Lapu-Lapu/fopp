@@ -7,11 +7,11 @@ Adding the Spheres
 .. code-block:: python
 
     #fade to true color when viewpoint moves near
-    def EnterSphere(e, sphere, color):
+    def enterSphere(e, sphere, color):
         ..........
     
     #fade to white when viewpoint moves away
-    def ExitSphere(e, sphere):
+    def exitSphere(e, sphere):
         ..........
     
     #add spheres and create a proximity sensor around each one
@@ -56,8 +56,8 @@ So let's backtrack:
         sphereSensors.append(sensor)
         manager.addSensor(sensor)
     
-        manager.onEnter(sensor, EnterSphere, sphere, color)
-        manager.onExit(sensor, ExitSphere, sphere)
+        manager.onEnter(sensor, enterSphere, sphere, color)
+        manager.onExit(sensor, exitSphere, sphere)
 
 There's quite a bit to unpack here.
 First of all, the function takes three arguments, which we have called ``name``, ``color`` and ``position`` respectively.
@@ -66,15 +66,17 @@ As we can see from the uses of ``addHiddenSphere()`` directly below the function
 In the first line of the function, we create a sphere object using the ``addSphere`` function provided by the ``vizshape`` module.
 Just like with the ``addChild()`` function above, its parent is ``viz.WORLD``.
 We set its radius to 0.2 meter through the keyword argument ``radius``.
-In the next line we use the sphere class's method ``setPosition`` to position the sphere.
+Since we don't specify a color, the color of the sphere is set to its default value, white.
+
+In the next line we use the sphere object's method ``setPosition`` to position the sphere.
 Vizard uses a three-dimensional coordinate system with an x, y and z axis.
 Accordingly, we set positions with lists containing three elements, one of each axis.
-In the case of the first sphere we added, the x value is 0 meters, the y value 1.8 eters and the y value 4 meters.
+In the case of the first sphere we added, the x value is 0 meters, the y value 1.8 meters and the y value 4 meters.
 When the avatar "spawns" in the virtual world, it stands on top of the world origin, ``[0, 0, 0]``, and its view is paralell to the z axis.
-Negative x values are to its left, positive x values to its right, negative z values behind it and positive z values in front of it.
+Negative x values are to its left, positive x values to its right, negative z values behind it and positive z values in front of it; negative y values are below the ground on which the avatar stands and positive y values above it.
 If you look at the video demo again (or run the script inside your demo of Vizard), you can see that the red sphere is directly in front of the participant at the start of the experiment, just as we would expect from a position with an x value of 0 and positive z value.
 
-In the next code paragraph we instantiate a ``BoundingsphereSensor``.
+In the next code paragraph we add a ``BoundingsphereSensor``.
 This is a sensor that is shaped like a sphere.
 Scale means radius, i.e. the sphere sensor has a radius of 5 meters.
 
@@ -86,14 +88,14 @@ Below you can see various examples of differently shaped sensors, some of which 
 The image is taken from the Vizard documentation (source: https://docs.worldviz.com/vizard/latest/#vizproximity_sensor.htm).
 The names of the different sensors are as follows:
 
-- A. Sphere sensor
-- B. Box sensor
-- C. Sphere sensor
-- D. Composite sensor (box with a sphere on top of it)
+A. Sphere sensor
+B. Box sensor
+C. Sphere sensor
+D. Composite sensor (box with a sphere on top of it)
 
-The ball in the picture, object A, is very close to our experimental setup: Just imagine the ball as one of the white sphere and keep the sphere bounding sensor around it.
+The ball in the picture, object A, is very close to our experimental setup: Just imagine the ball as one of the white sphere and keep the spherical sensor around it.
 
-In the next line, we assign the variable ``name`` (in the case of the first sphere this evaluates to ``'red'``) to the sphere's attribute ``name``.
+In the next line, we assign the variable ``name`` (in the case of the first sphere this evaluates to ``'red'``) to the sphere's attribute ``name``. 
 This gives us an easy way to identify a specific sphere, in case we want to manipulate it at a later point in the code.
 
 Next, we append ``sensor`` to the list ``sphereSensors``.
@@ -107,5 +109,16 @@ For example, if we wanted to change the positions of the sensors for whatever re
 
 In the last line of the paragraph we add the sensor to the manager.
 This is identical to adding a target to the manager like we did above.
+
+Managers react to target interacting with sensors based on different rules.
+One of these rules is "on enter", meaning that the reaction is triggered upon a target entering a sensor.
+The ``onEnter`` method of a manager instance implements this rule.
+The first argument is the sensor, the second argument is the function the manager should call once any of the target enters the sensor, all of the following arguments are passed to said function.
+In our case, if a target enters the ``sensor``, our ``manager`` will call the custom ``enterSphere`` function and pass to it the variables ``sphere`` and ``color`` as arguments.
+We will have a look at the ``enterSphere()`` (and the corresponding ``exitSphere()`` function in the next section.
+
+The name of the ``onExit`` method is self-explanatory and it works complementary to ``onEnter``.
+In our code example, we only pass one argument after we specify which function should be called when a target exits a sensor, because said function (``exitSphere``) only takes one argument, while ``enterSphere`` takes two.
+
 
 

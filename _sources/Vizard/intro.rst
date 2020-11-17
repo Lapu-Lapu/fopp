@@ -32,7 +32,7 @@ The goal of this chapter is for you to understand in broad strokes how the follo
     #Set up the environment and proximity sensors
     dojo = viz.addChild('dojo.osgb')
 
-    #Create proximity manager
+    #Create proximity cmanager
     manager = vizproximity.Manager()
     
     #Add main viewpoint as proximity target
@@ -40,11 +40,11 @@ The goal of this chapter is for you to understand in broad strokes how the follo
     manager.addTarget(target)
     
     #fade to true color when viewpoint moves near
-    def EnterSphere(e, sphere, color):
+    def enterSphere(e, sphere, color):
         sphere.runAction(vizact.fadeTo(color,time=1))
     
     #fade to white when viewpoint moves away
-    def ExitSphere(e, sphere):
+    def exitSphere(e, sphere):
         sphere.runAction(vizact.fadeTo(viz.WHITE,time=1))
     
     #add spheres and create a proximity sensor around each one
@@ -70,8 +70,8 @@ The goal of this chapter is for you to understand in broad strokes how the follo
     addHiddenSphere('gray', viz.GRAY, [-3.5,1.8,2])
 
     #Set debug off. Toggle debug with d key
-    manager.setDebug(viz.OFF)
-    debugEventHandle = vizact.onkeydown('d',manager.setDebug,viz.TOGGLE)
+    manager.setDebug(False)
+    debugEventHandle = vizact.onkeydown('d',manager.setDebug,viz.TOGGLE)col
     
     #Add a sensor in the center of the room for the participant to return to after each trial
     centerSensor = vizproximity.Sensor(vizproximity.CircleArea(1.5,center=(0.0,0.0)),None)
@@ -83,11 +83,11 @@ The goal of this chapter is for you to understand in broad strokes how the follo
     def participantInfo():
     
         #Turn off visibility of proximity sensors and disable toggle
-        manager.setDebug(viz.OFF)
-        debugEventHandle.setEnabled(viz.OFF)
+        manager.setDebug(False)
+        debugEventHandle.setEnabled(False)
     
         #Hide info panel currently displayed
-        info.visible(viz.OFF)
+        info.visible(False)
     
         #Add an InfoPanel with a title bar
         participantInfo = vizinfo.InfoPanel('',title='Participant Information',align=viz.ALIGN_CENTER, icon=False)
@@ -131,16 +131,16 @@ The goal of this chapter is for you to understand in broad strokes how the follo
     
         #provide instructions for the participant
         info.setText("You'll have 30 seconds to walk around and learn the true color of each sphere")
-        info.visible(viz.ON)
+        info.visible(True)
     
         #hide instructions after 5 seconds
         yield viztask.waitTime(5)
-        info.visible(viz.OFF)
+        info.visible(False)
     
         #let participant know learning phase has ended
         yield viztask.waitTime(30)
         info.setText("Please return to the center of the room to begin the testing phase")
-        info.visible(viz.ON)
+        info.visible(True)
     
         #Start testing phase after 5 seconds
         yield viztask.waitTime(5)
@@ -194,19 +194,16 @@ The goal of this chapter is for you to understand in broad strokes how the follo
         results = yield testPhase()
     
         #Log results to file
-        try:
-            with open(participant.id + '_experiment_data.txt','w') as f:
-    
-                #write participant data to file
-                data = "Participant ID: {p.id}\nLast Name: {p.lastName}\nFirst Name: {p.firstName}\nGender: {p.gender}\nAge: {p.ageGroup}\n\n".format(p=participant)
+        with open(participant.id + '_experiment_data.txt','w') as f:
+
+            #write participant data to file
+            data = "Participant ID: {p.id}\nLast Name: {p.lastName}\nFirst Name: {p.firstName}\nGender: {p.gender}\nAge: {p.ageGroup}\n\n".format(p=participant)
+            f.write(data)
+
+            #write result of each trial
+            for name,time in results:
+                data = "The {} trial took {:.2f} seconds\n".format(name,time)
                 f.write(data)
-    
-                #write result of each trial
-                for name,time in results:
-                    data = "The {} trial took {:.2f} seconds\n".format(name,time)
-                    f.write(data)
-        except IOError:
-            viz.logWarn('Could not log results to file. Make sure you have permission to write to folder')
     
     viztask.schedule(experiment)
 

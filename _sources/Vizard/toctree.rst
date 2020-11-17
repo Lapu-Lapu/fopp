@@ -10,3 +10,7 @@ Vizard
    classes.rst
    proximity.rst
    spheres.rst
+   debug.rst
+   enterAndExit.rst
+   scheduling.rst
+   generators.rst

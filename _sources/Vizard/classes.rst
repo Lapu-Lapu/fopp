@@ -22,6 +22,16 @@ If we wanted to created another sphere with green as its hidden color, we would 
 Classes can be thought of as factories that produces instances.
 The arguments of the classes are nobs that we can turn to change what the factory produces.
 
+Often classes have *methods*, which are functions that can be called on instances of a class.
+They also often have *attributes* which can be thought of as pieces of information about the instances of a class.
+For example, let's say we have the class ``Conact``.
+Its instances are entries in a contact book.
+We might instantiate a ``Contact`` object to collect information about our good friend Tom: ``tom = Contact()``.
+A method of this class might be ``.add_surname()``, which saves the surname of the contact to the contact object.
+For example: ``tom.add_surname('Sawyer')``.
+An attribute might be ``.surname``, which evaluates to the surname of the person.
+Hence, ``print(tom.surname)`` would output "Sawyer".
+
 .. You have actually already encountered classes when you used the ``random`` module, but for the ease of use they were hidden from you.
     Every method of ``random`` is actually performed on the ``random.Random`` class.
     Here is an example:
