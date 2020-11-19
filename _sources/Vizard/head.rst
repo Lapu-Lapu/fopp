@@ -22,8 +22,9 @@ So let's turn each of the functions into a black box and then look at the code a
     viz.go()
     
     #Set up the environment and proximity sensors
+    
     dojo = viz.addChild('dojo.osgb')
-
+    
     #Create proximity manager
     manager = vizproximity.Manager()
     
@@ -33,17 +34,16 @@ So let's turn each of the functions into a black box and then look at the code a
     
     #fade to true color when viewpoint moves near
     def enterSphere(e, sphere, color):
-        ..........
+        ...
     
     #fade to white when viewpoint moves away
     def exitSphere(e, sphere):
-        ..........
+        ...
     
     #add spheres and create a proximity sensor around each one
     sphereSensors = []
-    
     def addHiddenSphere(name, color, position):
-        ..........
+        ...
     
     addHiddenSphere('red', viz.RED, [0,1.8,4])
     addHiddenSphere('blue', viz.BLUE, [3.5,1.8,2])
@@ -51,9 +51,9 @@ So let's turn each of the functions into a black box and then look at the code a
     addHiddenSphere('green', viz.GREEN, [0,1.8,-4])
     addHiddenSphere('purple', viz.PURPLE, [-3.5,1.8,-2])
     addHiddenSphere('gray', viz.GRAY, [-3.5,1.8,2])
-
-    #Set debug off. Toggle debug with d key
-    manager.setDebug(False)
+    
+    # set debug on. Toggle debug with d key
+    manager.setDebug(True)
     debugEventHandle = vizact.onkeydown('d',manager.setDebug,viz.TOGGLE)
     
     #Add a sensor in the center of the room for the participant to return to after each trial
@@ -64,17 +64,17 @@ So let's turn each of the functions into a black box and then look at the code a
     info = vizinfo.InfoPanel("Explore the environment\nPress 'd' to toggle the visibility of the sensors\nPress spacebar to begin the experiment")
     
     def participantInfo():
-        ..........
+        ...
     
     def learnPhase():
-        ..........
+        ...
     
     def testPhase():
-        ..........
+        ...
     
     def experiment():
-        ..........
-    
+        ...
+                    
     viztask.schedule(experiment)
 
 It looks way less scary now, right?

@@ -30,9 +30,10 @@ The goal of this chapter is for you to understand in broad strokes how the follo
     viz.go()
     
     #Set up the environment and proximity sensors
+    
     dojo = viz.addChild('dojo.osgb')
-
-    #Create proximity cmanager
+    
+    #Create proximity manager
     manager = vizproximity.Manager()
     
     #Add main viewpoint as proximity target
@@ -59,8 +60,8 @@ The goal of this chapter is for you to understand in broad strokes how the follo
         sphereSensors.append(sensor)
         manager.addSensor(sensor)
     
-        manager.onEnter(sensor, EnterSphere, sphere, color)
-        manager.onExit(sensor, ExitSphere, sphere)
+        manager.onEnter(sensor, enterSphere, sphere, color)
+        manager.onExit(sensor, exitSphere, sphere)
     
     addHiddenSphere('red', viz.RED, [0,1.8,4])
     addHiddenSphere('blue', viz.BLUE, [3.5,1.8,2])
@@ -68,10 +69,10 @@ The goal of this chapter is for you to understand in broad strokes how the follo
     addHiddenSphere('green', viz.GREEN, [0,1.8,-4])
     addHiddenSphere('purple', viz.PURPLE, [-3.5,1.8,-2])
     addHiddenSphere('gray', viz.GRAY, [-3.5,1.8,2])
-
-    #Set debug off. Toggle debug with d key
-    manager.setDebug(False)
-    debugEventHandle = vizact.onkeydown('d',manager.setDebug,viz.TOGGLE)col
+    
+    # set debug on. Toggle debug with d key
+    manager.setDebug(True)
+    debugEventHandle = vizact.onkeydown('d',manager.setDebug,viz.TOGGLE)
     
     #Add a sensor in the center of the room for the participant to return to after each trial
     centerSensor = vizproximity.Sensor(vizproximity.CircleArea(1.5,center=(0.0,0.0)),None)
@@ -100,11 +101,11 @@ The goal of this chapter is for you to understand in broad strokes how the follo
     
         #Add gender and age fields
         radiobutton_male = participantInfo.addLabelItem('Male',viz.addRadioButton(0))
-        radiobutton_female = participantInfo.addLabelItem('Female',viz.addRadio())
+        radiobutton_female = participantInfo.addLabelItem('Female',viz.addRadioButton(0))
+        droplist_age = participantInfo.addLabelItem('Age Group',viz.addDropList())
         ageList = ['20-30','31-40','41-50','51-60','61-70']
         droplist_age.addItems(ageList)
-        participantInfo.addSeparator()Button(0))
-        droplist_age = participantInfo.addLabelItem('Age Group',viz.addDropList
+        participantInfo.addSeparator()
     
         #Add submit button aligned to the right and wait until it's pressed
         submitButton = participantInfo.addItem(viz.addButtonLabel('Submit'),align=viz.ALIGN_RIGHT_CENTER)
@@ -183,8 +184,8 @@ The goal of this chapter is for you to understand in broad strokes how the follo
         #return results
         viztask.returnValue(results)
     
-    def experiment():
     
+    def experiment():
         #Wait for spacebar to begin experiment
         yield viztask.waitKeyDown(' ')
     
@@ -195,16 +196,18 @@ The goal of this chapter is for you to understand in broad strokes how the follo
     
         #Log results to file
         with open(participant.id + '_experiment_data.txt','w') as f:
-
+    
             #write participant data to file
             data = "Participant ID: {p.id}\nLast Name: {p.lastName}\nFirst Name: {p.firstName}\nGender: {p.gender}\nAge: {p.ageGroup}\n\n".format(p=participant)
             f.write(data)
-
+    
             #write result of each trial
-            for name,time in results:
+            for result in results:
+                name = result[0]
+                time = result[1]
                 data = "The {} trial took {:.2f} seconds\n".format(name,time)
                 f.write(data)
-    
+                    
     viztask.schedule(experiment)
 
 This code is a near 1:1 copy of this example script from the Vizard documentation: https://docs.worldviz.com/vizard/latest/#examples/experimentDesign.htm

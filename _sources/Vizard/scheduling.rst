@@ -7,9 +7,7 @@ Scheduling
 .. code-block:: py
 
     #Add vizinfo panel to display instructions
-    info = vizinfo.InfoPanel("""Explore the environment\n
-                             Press 'd' to toggle the visibility of the sensors\n
-                             Press spacebar to begin the experiment""")
+    info = vizinfo.InfoPanel("Explore the environment\nPress 'd' to toggle the visibility of the sensors\nPress spacebar to begin the experiment")
     
     def participantInfo():
         ..........

@@ -22,11 +22,7 @@ We have finally reached the point at which we can look into the ``experiment`` f
         #Log results to file
         with open(participant.id + '_experiment_data.txt','w') as f:
             #write participant data to file
-            data = """Participant ID: {p.id}
-                      Last Name: {p.lastName}
-                      First Name: {p.firstName}
-                      Gender: {p.gender}
-                      Age: {p.ageGroup}\n\n""".format(p=participant)
+            data = "Participant ID: {p.id}\nLast Name: {p.lastName}\nFirst Name: {p.firstName}\nGender: {p.gender}\nAge: {p.ageGroup}\n\n".format(p=participant)
             f.write(data)
 
             #write result of each trial
