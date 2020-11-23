@@ -2,7 +2,7 @@ Vizard
 ::::::
 
 .. toctree::
-   :caption: Vizard
+   :caption: Vizard 
    :maxdepth: 2
 
    intro.rst
