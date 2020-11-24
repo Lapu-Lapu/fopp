@@ -19,6 +19,7 @@ So let's turn each of the functions into a black box and then look at the code a
     import vizshape
     
     viz.fov(60)
+    walkNav = vizcam.WalkNavigate()
     viz.go()
     
     #Set up the environment and proximity sensors
@@ -109,11 +110,18 @@ General Setup
 .. code-block:: python
 
     viz.fov(60)
+    walkNav = vizcam.WalkNavigate()
     viz.go()
 
 ``fov`` is short for "field of view".
 ``.fov(60)`` sets the field of view to 60 degrees.
 Making it wider lets the participant see more of their sorrounding, but it might also look unrealistic and disorienting.
+
+Vizard's default way to move around and change the camera angle when running your script on a computer (outside of VR) is a bit confusing.
+If Vizard were a video game, one would say that the controls are counter-intuitive.
+Therefore, we change it to Vizard's ``WalkNavigate`` navigation style, which implements a behavior that should be more familiar to most people: Moving around with the keys W, A, S and D and rotating the camera angle with the mouse.
+It's called ``WalkNavigate``, because the position of the camera on the y axis (i.e. the height) is fixed to 1.8, the average hight of a human, i.e. the navigation style simulates walking around in the virtual environment.
+If we chose ``FlyNavigate`` instead, we could change the y coordinates of the camera and fly into the air.
 
 ``go()`` simply launches Vizard.
 

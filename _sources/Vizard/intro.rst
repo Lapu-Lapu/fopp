@@ -27,6 +27,7 @@ The goal of this chapter is for you to understand in broad strokes how the follo
     import vizshape
     
     viz.fov(60)
+    walkNav = vizcam.WalkNavigate()
     viz.go()
     
     #Set up the environment and proximity sensors

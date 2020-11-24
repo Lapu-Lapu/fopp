@@ -1,11 +1,14 @@
 ﻿import viz
-import viztask
 import vizact
+import vizcam
 import vizinfo
 import vizproximity
 import vizshape
+import viztask
 
 viz.fov(60)
+walkNav = vizcam.WalkNavigate()
+vizcam.setHandler(walkNav)
 viz.go()
 
 #Set up the environment and proximity sensors
